@@ -1,0 +1,23 @@
+<?php
+include 'db.php';
+session_start();
+$user_id = $_SESSION['user_id'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $experience = $_POST['experience'];
+    $sql = "INSERT INTO experiences (user_id, experience) VALUES ('$user_id', '$experience')";
+    $conn->query($sql);
+    header("Location: dashboard.php");
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head><title>Share Experience</title></head>
+<body>
+    <form method="post">
+        <textarea name="experience" placeholder="Share your interview experience" required></textarea><br>
+        <button type="submit">Share</button>
+    </form>
+</body>
+</html>

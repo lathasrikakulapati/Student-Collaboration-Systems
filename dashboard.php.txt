@@ -1,0 +1,28 @@
+<?php
+include 'db.php';
+session_start();
+$user_id = $_SESSION['user_id'];
+?>
+
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+    <h2>Welcome to the Student Collaboration Platform</h2>
+    <a href="post_question.php">Post a Question</a> |
+    <a href="post_experience.php">Share Interview Experience</a> |
+    <a href="view_experience.php">View Interview Experiences</a> |
+    <a href="logout.php">Logout</a>
+
+    <h3>Questions:</h3>
+    <?php
+    $questions = $conn->query("SELECT * FROM questions");
+    while ($question = $questions->fetch_assoc()) {
+        echo "<div>";
+        echo "<h4>" . $question['question'] . "</h4>";
+        echo "<a href='answer.php?question_id=" . $question['id'] . "'>Answer</a>";
+        echo "</div><hr>";
+    }
+    ?>
+</body>
+</html>

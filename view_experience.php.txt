@@ -1,0 +1,17 @@
+<?php
+include 'db.php';
+?>
+
+<!DOCTYPE html>
+<html>
+<head><title>Interview Experiences</title></head>
+<body>
+    <h2>Interview Experiences</h2>
+    <?php
+    $experiences = $conn->query("SELECT * FROM experiences");
+    while ($exp = $experiences->fetch_assoc()) {
+        echo "<div><p>" . $exp['experience'] . "</p><hr></div>";
+    }
+    ?>
+</body>
+</html>

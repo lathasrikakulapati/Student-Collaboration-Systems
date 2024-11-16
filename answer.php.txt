@@ -1,0 +1,24 @@
+<?php
+include 'db.php';
+session_start();
+$user_id = $_SESSION['user_id'];
+$question_id = $_GET['question_id'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $answer = $_POST['answer'];
+    $sql = "INSERT INTO answers (question_id, user_id, answer) VALUES ('$question_id', '$user_id', '$answer')";
+    $conn->query($sql);
+    header("Location: dashboard.php");
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head><title>Answer Question</title></head>
+<body>
+    <form method="post">
+        <textarea name="answer" placeholder="Your answer" required></textarea><br>
+        <button type="submit">Submit Answer</button>
+    </form>
+</body>
+</html>
